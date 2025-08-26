@@ -1,211 +1,140 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Laravel Sitemap Generator - Documentation</title>
-<style>
-    body {
-        font-family: "Segoe UI", Tahoma, sans-serif;
-        background-color: #f8f9fa;
-        color: #333;
-        margin: 0;
-        padding: 0;
-        line-height: 1.6;
-    }
-    header {
-        background: #1f2937;
-        color: #fff;
-        text-align: center;
-        padding: 30px 20px;
-    }
-    header h1 {
-        margin: 0;
-        font-size: 2.5rem;
-    }
-    header p {
-        font-size: 1.1rem;
-        margin-top: 10px;
-        opacity: 0.9;
-    }
-    .container {
-        max-width: 1000px;
-        margin: 30px auto;
-        padding: 20px;
-        background: #fff;
-        border-radius: 8px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    }
-    h2 {
-        color: #1f2937;
-        margin-top: 30px;
-        border-left: 4px solid #2563eb;
-        padding-left: 10px;
-    }
-    code, pre {
-        background: #f3f4f6;
-        padding: 10px;
-        border-radius: 5px;
-        font-size: 14px;
-        display: block;
-        margin: 10px 0;
-        overflow-x: auto;
-    }
-    ul {
-        padding-left: 20px;
-        margin: 10px 0;
-    }
-    .tip {
-        background: #e0f7fa;
-        color: #00695c;
-        padding: 10px;
-        border-left: 4px solid #009688;
-        margin-top: 10px;
-        border-radius: 5px;
-        font-size: 14px;
-    }
-    .contact-box {
-        background: #f9fafb;
-        border-left: 4px solid #2563eb;
-        padding: 15px;
-        margin-top: 20px;
-        font-size: 15px;
-    }
-    footer {
-        text-align: center;
-        padding: 20px;
-        font-size: 14px;
-        color: #6b7280;
-    }
-</style>
-</head>
-<body>
+Laravel Sitemap Generator
 
-<header>
-    <h1>Laravel Sitemap Generator</h1>
-    <p>A powerful tool to generate XML sitemaps with SSL support, deep crawling, and Laravel integration.</p>
-</header>
+Laravel Sitemap Generator is a simple yet powerful tool for generating XML sitemaps for your website. It supports SSL verification, deep crawling, and customizable settings for robust sitemap generation.
 
-<div class="container">
+🚀 Features
 
-    <h2>🚀 Features</h2>
-    <ul>
-        <li>Crawl and generate a complete XML sitemap for your domain.</li>
-        <li>Configurable maximum depth and URL limits.</li>
-        <li>SSL verification using <code>cacert.pem</code>.</li>
-        <li>Easy integration into Laravel projects.</li>
-        <li>Logs for debugging and monitoring.</li>
-    </ul>
+Crawl and generate a complete XML sitemap for your domain.
 
-    <h2>✅ Requirements</h2>
-    <ul>
-        <li>PHP 8.0+</li>
-        <li>Laravel 9.x / 10.x</li>
-        <li>Composer</li>
-        <li>OpenSSL & cURL enabled</li>
-    </ul>
+Configurable maximum depth and URL limits.
 
-    <h2>📦 Installation</h2>
-    <ol>
-        <li><strong>Clone the Repository</strong>
-            <pre><code>git clone https://github.com/your-username/laravel-sitemap-generator.git
-cd laravel-sitemap-generator</code></pre>
-        </li>
+SSL verification using cacert.pem.
 
-        <li><strong>Install Dependencies</strong>
-            <pre><code>composer install</code></pre>
-        </li>
-    </ol>
+Easy integration into Laravel projects.
 
-    <h2>🔒 SSL Configuration</h2>
-    <p>The application requires SSL verification for secure HTTP requests.</p>
-    <ol>
-        <li>Download the latest <code>cacert.pem</code> file from <a href="https://curl.se/docs/caextract.html" target="_blank">cURL official site</a>.</li>
-        <li>Create a directory:
-            <pre><code>storage/app/certs/</code></pre>
-        </li>
-        <li>Place <code>cacert.pem</code> inside:
-            <pre><code>storage/app/certs/cacert.pem</code></pre>
-        </li>
-    </ol>
+Logs for debugging and monitoring.
 
-    <h2>⚙️ Environment Setup (.env)</h2>
-    <p>Add the following lines to your <code>.env</code> file:</p>
-    <pre><code>HTTP_VERIFY=true
-HTTP_CA_BUNDLE=D:\xampp_8_2_12\htdocs\abhi\site-map-generator\storage\app\certs\cacert.pem</code></pre>
-    
-    <div class="tip">Tip: Replace the path with your local or production environment path.</div>
-    
-    <p>If you want to disable SSL verification (not recommended), set:</p>
-    <pre><code>HTTP_VERIFY=false</code></pre>
+✅ Requirements
 
-    <h2>▶️ Running the Application</h2>
-    <ol>
-        <li><strong>Generate Application Key (if new)</strong>
-            <pre><code>php artisan key:generate</code></pre>
-        </li>
-        <li><strong>Start the Laravel Server</strong>
-            <pre><code>php artisan serve</code></pre>
-        </li>
-    </ol>
-    <p>Your app will be available at:</p>
-    <pre><code>http://127.0.0.1:8000</code></pre>
+PHP 8.0+
 
-    <h2>🛠 Usage</h2>
-    <p><strong>Generating a Sitemap</strong></p>
-    <ul>
-        <li>Navigate to the application in your browser.</li>
-        <li>Enter the base URL of the website you want to crawl.</li>
-        <li>Click <strong>Generate Sitemap</strong>.</li>
-        <li>The generated sitemap XML will be stored in:
-            <pre><code>storage/app/sitemaps/</code></pre>
-        </li>
-    </ul>
+Laravel 9.x / 10.x
 
-    <h2>👨‍💻 Development Notes</h2>
-    <ul>
-        <li>Check Laravel logs for any errors:
-            <pre><code>storage/logs/laravel.log</code></pre>
-        </li>
-        <li>Keep <code>APP_DEBUG=true</code> in <code>.env</code> during development.</li>
-        <li>For production, set <code>APP_DEBUG=false</code>.</li>
-    </ul>
+Composer
 
-    <h2>⚠️ Important</h2>
-    <ul>
-        <li>Ensure OpenSSL and cURL are enabled in <code>php.ini</code>.</li>
-        <li>The <code>cacert.pem</code> file must be updated periodically for valid SSL verification.</li>
-        <li>For large sites, increase:
-            <ul>
-                <li><code>max_execution_time</code></li>
-                <li><code>memory_limit</code> in <code>php.ini</code></li>
-            </ul>
-        </li>
-    </ul>
+OpenSSL & cURL enabled
 
-    <h2>📜 License</h2>
-    <p>Open-sourced software licensed under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a>.</p>
+📦 Installation
+1. Clone the Repository
+git clone https://github.com/your-username/laravel-sitemap-generator.git
+cd laravel-sitemap-generator
 
-    <h2>👨‍💻 Contributing</h2>
-    <ul>
-        <li>Fork the repo</li>
-        <li>Create a new branch for your feature/fix</li>
-        <li>Submit a pull request</li>
-    </ul>
+2. Install Dependencies
+composer install
 
-    <h2>📧 Contact</h2>
-    <div class="contact-box">
-        <p><strong>Abhi Chavda</strong><br>
-        Full Stack Developer<br>
-        📞 <strong>+91 7016314980</strong><br>
-        📧 <a href="mailto:abhichavda2004@gmail.com">abhichavda2004@gmail.com</a></p>
-    </div>
+🔒 SSL Configuration
 
-</div>
+The application requires SSL verification for secure HTTP requests.
 
-<footer>
-    &copy; 2025 Laravel Sitemap Generator. All rights reserved.
-</footer>
+3. Download cacert.pem
 
-</body>
-</html>
+Download the latest CA certificate bundle from cURL official site
+.
+
+Create a directory:
+
+storage/app/certs/
+
+
+Place cacert.pem inside:
+
+storage/app/certs/cacert.pem
+
+⚙️ Environment Setup
+
+Add the following lines to your .env file:
+
+HTTP_VERIFY=true
+HTTP_CA_BUNDLE=D:\xampp_8_2_12\htdocs\abhi\site-map-generator\storage\app\certs\cacert.pem
+
+
+Tip: Replace the path with your local or production environment path.
+
+If you want to disable SSL verification (not recommended), set:
+
+HTTP_VERIFY=false
+
+▶️ Running the Application
+4. Generate Application Key (if new)
+php artisan key:generate
+
+5. Start the Laravel Server
+php artisan serve
+
+
+Your app will be available at:
+
+http://127.0.0.1:8000
+
+🛠 Usage
+Generating a Sitemap
+
+Navigate to the application in your browser.
+
+Enter the base URL of the website you want to crawl.
+
+Click Generate Sitemap.
+
+The generated sitemap XML will be stored in:
+
+storage/app/sitemaps/
+
+
+Download or view the sitemap from the interface.
+
+👨‍💻 Development Notes
+
+Check Laravel logs for any errors:
+
+storage/logs/laravel.log
+
+
+Keep APP_DEBUG=true in .env during development.
+
+For production, make sure APP_DEBUG=false.
+
+⚠️ Important
+
+Ensure OpenSSL and cURL are enabled in php.ini.
+
+The cacert.pem file must be updated periodically for valid SSL verification.
+
+For large sites, increase:
+
+max_execution_time
+
+memory_limit in php.ini.
+
+📜 License
+
+Open-sourced software licensed under the MIT License
+.
+
+👨‍💻 Contributing
+
+We welcome contributions!
+
+Fork the repo
+
+Create a new branch for your feature/fix
+
+Submit a pull request
+
+📧 Contact
+
+For any queries or support, contact:
+
+Abhi Chavda
+Full Stack Developer
+📞 +91 7016314980
+📧 abhichavda2004@gmail.com
