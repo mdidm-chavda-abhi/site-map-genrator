@@ -73,7 +73,7 @@ class SitemapToolController extends Controller
     /**
      * Crawl using BFS with depth and time caps.
      */
-   private function crawlWebsite(string $startUrl, float $startedAt): array
+    private function crawlWebsite(string $startUrl, float $startedAt): array
     {
         $host = parse_url($startUrl, PHP_URL_HOST);
 
@@ -83,7 +83,7 @@ class SitemapToolController extends Controller
             $queue[] = [$startUrl . '/blogs', 1];
         }
 
-        
+
 
         $visited = [];
         $visited[$startUrl] = true;
@@ -208,13 +208,25 @@ class SitemapToolController extends Controller
         foreach ($xpath->query('//a[@href]') as $node) {
             /** @var \DOMElement $node */
             $href = trim($node->getAttribute('href'));
-            if ($href === '' || $href[0] === '#') continue;
-            $hrefs[] = $this->resolveUrl($href, $baseUrl);
+
+            // Skip empty, hash-only, or bad links
+            if (
+                $href === '' || $href[0] === '#' ||
+                stripos($href, 'javascript:') === 0 ||
+                stripos($href, 'mailto:') === 0 ||
+                stripos($href, 'tel:') === 0
+            ) {
+                continue;
+            }
+
+            $resolved = $this->resolveUrl($href, $baseUrl);
+            $hrefs[] = $resolved;
         }
         libxml_clear_errors();
 
         return array_values(array_unique($hrefs));
     }
+
 
     private function resolveUrl(string $href, string $base): string
     {
