@@ -117,12 +117,24 @@ memory_limit in php.ini.
 
 📜 License
 
-This project is open-sourced under the MIT License
+Open-sourced software licensed under the MIT License
 .
 
-✅ Next Level Option: I can also add badges, composer installation command, and a sample screenshot section like professional Laravel packages.
-Do you want me to include:
+👨‍💻 Contributing
 
-✔ Badges (Build Status, Downloads, Version, License)?
-✔ Screenshot / Preview section?
-✔ Sample Laravel Route or Command for triggering sitemap generation?
+We welcome contributions!
+
+Fork the repo
+
+Create a new branch for your feature/fix
+
+Submit a pull request
+
+📧 Contact
+
+For any queries or support, contact:
+
+Abhi Chavda
+Full Stack Developer
+📞 +91 7016314980
+📧 abhichavda2004@gmail.com
